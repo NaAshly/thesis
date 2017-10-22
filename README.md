@@ -278,3 +278,155 @@ were found. To be accurate any row consisting missing value was eliminated.
  There were lot of medicine names and generic names were missing or recorded
 inappropriately in the dataset. For the spelling mistake and typographic error many information could
 not be retrieved properly. There was few human errors in the documentation processes.
+Algorithm and Tools
+4.1 Decision Tree Classifier
+Classification is a process of dividing up objects so that each object is assigned to one of a number
+of mutually exclusive and exhaustive categories (known as class). A classifier gains knowledge from
+historical dataset and assign any unknown instances to classes.
+Decision Trees (DTs) are a non-parametric supervised learning method used for classification. The
+goal is to create a model that predicts the value of a target variable by learning simple decision rules
+inferred from the data features [14].
+4.2 Development Platform and Tools
+The complete dataset was stored in Microsoft SQL Server.
+For the accuracy rating WEKA has been used. Weka is a collection of machine learning algorithms
+for data mining tasks. Weka contains tools for data pre-processing, classification, regression,
+clustering, association rules and visualization [15].
+Building Prediction Model
+5.1 Initial Criteria for Doctor Selection
+The two characteristics we demanded in a doctor to prefer him for medicine
+promoting
+are popularity and loyalty.
+Popularity is the percentage of patience visiting that doctor in a territory. Territory is the smallest
+unit for medicine distribution by the pharmaceutical companies and the 4P workers collect data
+territory wise.
+Loyalty is the percentage of Ziska prescribed medicine of a doctor among all his prescribed
+medicine.
+ Doctor Popularity
+Popularity =
+TV
+SV × 100 %
+TV = Total number of visit to a specific doctor
+SV =Total number of visit for all doctors in that territory
+ Doctor Loyalty
+Loyalty =
+ZP
+TP
+× 100 %
+ZP = Total number of prescribed Ziska
+5.2 Analytical Approach
+The analytical approach shows how we determined the ‘Class’ of a doctor if it’s ‘Fair’ to promote
+him for further medicine or not.
+Step 1.
+Initial format:
+For isServiceGiven = Yes, Class: Fair
+For isServiceGiven = No, Class: Unfair
+Step 2.
+If Loyalty >= 5, Class: Fair
+Step 3.
+For isServiceGiven = Yes
+If Loyalty < 5 & TP <200, Class: Fair
+Step 4.
+For isServiceGiven = No
+If Popularity >= 30, Class: Fair
+During the class assignment, emphasized on keeping the ‘Initial Format’ unchanged.Pharma medicine
+TP = Total number of prescribed medicine
+5.4 Examining Data into Classifier
+After setting the decision rules by the analytical approach the dataset was prepared for the
+classifier examining.
+5.4.1 Feed the Dataset in WEKA
+After preparing the dataset it was converted into CSV format. The CSV format was
+converted into ARFF file to run in WEKA.
+5.4.2 Preparing Training Dataset
+J48 (Decision Tree) classifier has been used in WEKA for testing the dataset with a
+70-30 percentage split. 70% of the dataset was training data and 30% was test data.
+5.4.3 Predicting Unseen Instances from Existing Dataset
+After developing the model, the prediction for unknown ‘Class’ has been made by
+WEKA. 
+Chapter 6
+Analyzing Result
+6.1 Inspecting Accuracy
+After testing the dataset for prediction accuracy the classified instances, TPR, FPR has been
+determined.
+Correctly Classified Instances 97.2912 %
+Incorrectly Classified Instances 2.7088 %
+TPR (True Positive Rate): 0.969
+FPR (False Positive Rate): 0.019
+TPR is the proportion of positive instances that are correctly classified as positive.
+FPR is the proportion of negative instances that are incorrectly classified as positive.
+6.3 ROC Curve
+In statistics, a Receiver Operating Characteristics or ROC curve is a graphical
+plot that illustrates the performance of a binary classifier system. The curve is created by plotting
+the TPR against the FPR.
+A classifier or prediction model is considered as good if the area under ROC curve is 60% or more.
+The area under ROC curve of our prediction model is 0.977 which is a good outcome.
+Here, X axis = False Positive Rate
+and Y axis = True Positive Rate
+Confusion Matrix is a tabular way of illustrating the performance of a classifier. The
+confusion matrix by our prediction model is
+Predicted Class
+Fair Unfair
+Actual
+Class
+Fair 278 9
+Unfair 3 153
+Table 6A : Confusion Matrix
+The confusion matrix result shows only 12 instances were classified incorrectly which is a good
+prediction result.
+Limitation and Future Work
+7.1 Correlation between Popularity and Loyalty
+Correlation is the dependence or association in any statistical relationship between two random
+variables or two sets of data.
+7.2 Specifying ‘Brand’ promoting rate for doctors
+In our work we have considered the company of the medicines so far for loyalty detection.
+Pharmaceutical companies categorize their medicines in different brands based on the
+characteristics of the elements of the medicine.
+The loyalty level can be detected more precisely if we can relate the brands with the prescribed
+medicine.
+7.3 Higher accuracy level
+Based on the previous researches we are looking for more criteria’s (along popularity and loyalty)
+for doctor selection, which might enhance our accuracy level.
+Chapter 8
+Conclusion
+The action of our thesis work gives a record of the doctor list with the criteria’s of doctors which could
+be considered for medicine promoting. As the whole process is done manually there are chances to
+manipulate the records.
+Our classification result gives very accurate and spontaneous result for doctor selection. The
+pharmaceutical company, the third party company (eg. 4P), the MPO (field workers for data collection),
+there may come diversity among the three entities for the doctor selection process. But when they will
+already be given an evidence and record of the doctors classification, the deliberate deception or the
+chance of misappropriating will be decreased for every entities and in every step. Thus million’s amount
+of money can be saved by the pharmaceutical companies. 
+Reference:
+[1] W. Yu, "Data Mining Techniques in Medical Informatics", The Open Medical Informatics
+Journal, vol. 4, no. 1, pp. 21-22, 2010.
+[2] E. Barati,M. Saraee, A. Mohammadi "A Survey on Utilization of Data Mining Approaches for
+Dermatological (Skin) Diseases Prediction", Cyber Journals: Multidisciplinary Journals in Science
+and Technology, Journal of Selected Areas in Health Informatics (JSHI): March Edition, 2011.
+[3] H.A. Guvenir and N. Emeksiz, "An expert system for the differential diagnosis of erythematosquamous
+diseases," Expert Systems with Applications, vol. 18, pp. 43–49, 2000
+[4] D. Paperny, Handbook of Adolescent Medicine and Health Promotion, 1st ed. World Scientific
+Publishing Co. Pte. Ltd, 2011, p. 24.
+[5] N. Katz, L. Panas, M. Kim, A. Audet, A. Bilansky, J. Eadie, P. Kreiner, F. Paillard, C. Thomas
+and G. Carrow, "Usefulness of prescription monitoring programs for surveillance-analysis of
+Schedule II opioid prescription data in Massachusetts, 1996-2006", Pharmacoepidemiology and Drug
+Safety, vol. 19, no. 2, pp. 115-123, 2010.
+[6] L. Nanni, "An ensemble of classifiers for the diagnosis of erythemato-squamous diseases,"
+Neurocomputing, vol. 69, pp. 842-845, 2006.
+[7] M. Von Korff, E. Wagner and K. Saunders, "A chronic disease score from automated pharmacy
+data", Journal of Clinical Epidemiology, vol. 45, no. 2, pp. 197-203, 1992
+[8] E. Guven and A. Bellaachia, "Predicting Breast Cancer Survivability Using Data Mining
+Techniques", 2007.
+[9] M. Khaleel, S. Pradhan and G. Dash, "Finding Locally Frequent Diseases Using Modified
+Apriori Algorithm", International Journal of Advanced Research in Computer and Communication
+Engineering, vol. 2, no. 10, 2013.
+[10] J. Soni, U. Ansari, D. Sharma and S. Soni, "Predictive Data Mining for Medical Diagnosis: An
+Overview of Heart Disease Prediction", International Journal of Computer Applications, vol. 17, no.
+8, pp. 43-48, 2011.
+[11] C. Bellos, A. Papadopoulos, D. Fotiadis and R. Rosso, "An Intelligent System for Classification
+of Patients Suffering from Chronic Diseases", FORTH BRI Foundation for Research and Technology
+- Hellas, Biomedical Research, Ioannina Greece, 2010.
+[12] J. Parker, J. McCombs and E. Graddy, "Can Pharmacy Data Improve Prediction of Hospital
+Outcomes?", Medical Care, vol. 41, no. 3, pp. 407-419, 2003.
+[13] C. Gibbons, S. Richards, J. Valderas and J. Campbell, "Supervised Machine Learning
+Algorithms Can Classify Open-Text Feedback of Doctor Performance With Human-Level
+Accuracy", Journal of Medical Internet Research, vol. 19, no. 3, p. e65, 2017.
