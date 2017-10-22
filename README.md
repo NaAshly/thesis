@@ -1,2 +1,2 @@
 # thesis
-[embed]https://github.com/NaAshly/thesis/blob/master/Further-Medicine-Promotion-Prediction.pdf[/embed]
+[embed]https://raw.githubusercontent.com/NaAshly/thesis/master/Further-Medicine-Promotion-Prediction.pdf[/embed]
